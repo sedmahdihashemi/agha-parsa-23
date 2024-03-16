@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+
+        }
+        main{
+            width: 80%;
+            height: 80vh;
+            border: 1px solid black;
+            display: flex;
+            >div{
+                width: 50%;
+                height: 100%;
+                border: 2px solid blue;
+                &:first-of-type{
+                    >input{
+                        width: 80%;
+                        height: 30px;
+                    }
+                    >button{
+                        width: 80%;
+                    }
+                }
+                &:last-of-type{
+
+                }
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <main>
+        <div id="databox">
+            <input type="text">
+            <input type="number">
+            <button onclick="stdInfo()">click me</button>
+
+        </div>
+        <div id="list">
+
+        </div>
+    </main>
+
+
+
+    <script>
+        let inps = document.querySelectorAll('#databox>input')
+
+
+        const stdInfo = () =>{
+            let flag = 0
+         
+            if(inps[0].value == "" || inps[0].value == null){
+                inps[0].style.border = '2px solid red'
+            }else{
+                inps[0].style.border = '2px solid green'
+                flag++
+
+            }
+
+            if(inps[1].value =='' || inps[1].value == null){
+                inps[1].style.border = '2px solid red'
+            }else{
+                inps[1].style.border = '2px solid green'
+                flag++
+
+            }
+
+            let num = inps[1].value
+            let txt = ''
+            if(flag == 2){
+                switch(true){
+                    case num <= 5 : txt = 'eftezah'; break;
+                    case num <= 10 : txt = 'bad'; break;
+                    case num <= 15 : txt = 'mamoli'; break;
+                    case num <= 20 : txt = 'khob' ; break;
+                    default : txt = 'adambash'
+                }
+                const _h2 = document.createElement('h2')
+                _h2.innerHTML = `
+                <b>${inps[0].value}</b>
+                <em>${inps[1].value}</em>
+                <span>${txt}<span>
+                
+                
+                `
+
+                document.getElementById('list').appendChild(_h2)
+                for(i = 0 ; i<inps.length ; i++){
+                    inps[i].value = null
+                    inps[i].style.border = '1px solid black'
+                }
+            }
+
+
+
+
+
+            
+
+        }
+
+
+    </script>
+</body>
+</html>

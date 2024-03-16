@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .circle {
+            width: 400px;
+            height: 400px;
+
+            margin: 100px auto;
+            position: relative;
+
+            >div {
+                width: 100%;
+                height: 100%;
+
+                border-radius: 50%;
+                background-image: url(img/download.jpg);
+                background-size: cover;
+                cursor: pointer;
+                transition: 3s ease-out;
+            }
+
+            &::after {
+                content: '';
+                display: block;
+                width: 40px;
+                height: 60px;
+                background-color: black;
+                clip-path: polygon(0 0, 100% 0, 50% 100%);
+                position: absolute;
+                left: 50%;
+                top: 0;
+                transform: translateX(-50%);
+            }
+        }
+
+        button {
+            width: 200px;
+            height: 50px;
+            display: block;
+            margin: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="circle" onclick="_chance(this)">
+        <div>
+
+        </div>
+    </div>
+    <button onclick="_reset()">reset</button>
+
+
+    <script>
+        // let x = Math.random()
+
+
+        function _chance(e) {
+            let num = -Math.floor((Math.random() * 360))
+
+
+            if(
+                num % 36
+
+            ){
+                let txt = ''
+                e.children[0].style.transform = `rotate(${num}deg)`
+                // num -= 720
+                switch(true){
+                    case num >-36: txt = '10%'; break; 
+                    case num >-72: txt = '20%'; break; 
+                    case num >-108: txt = '30%'; break; 
+                    case num >-144: txt = '40%'; break; 
+                    case num >-180: txt = '50%'; break; 
+                    case num >-216: txt = '60%'; break; 
+                    case num >-252: txt = '70%'; break; 
+                    case num >-288: txt = '80%'; break; 
+                    case num >-324: txt = '90%'; break; 
+                    case num >-360: txt = '100%'; break; 
+                }
+                setTimeout(() => {
+                    alert('you won : ' + txt)
+ 
+                }, 3100);
+
+
+            }else{
+                _chance()
+            }
+        }
+        function _reset() {
+            document.getElementsByClassName('circle')[0].children[0].removeAttribute('style')
+        }
+    </script>
+</body>
+
+</html>
